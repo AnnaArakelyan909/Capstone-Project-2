@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  tasks:
+    - name: use cluster
+      command: kubectl cluster-info --context kind-flask-app 
+      become: True
+      become_user: sysadmin
+    - name: run deployment.yaml
+      command: kubectl apply -f deployment.yaml
+      become: True
+      become_user: sysadmin
