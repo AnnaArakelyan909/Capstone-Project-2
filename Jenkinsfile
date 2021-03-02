@@ -1,8 +1,11 @@
-pipeline{
+pipeline {
     agent any
-    tools {
-        terraform 'terraform'
+    environment {
+        DOCKER_HUB_REPO = "annaarakeyan/terraform"
+        REGISTRY_CREDENTIAL = "dockerhub_id"
+        
     }
+
     stages {
         stage('Clean Workspace and SCM Checkout'){
             steps {
@@ -11,17 +14,11 @@ pipeline{
             }
         }
 
-        stage('Terraform Init'){
-            steps {
-                     sh 'terraform init'
-            }
-        }
-   
-        stage('Terraform Apply'){
-            steps {
-                sh 'terraform apply --auto-approve'
-            }
-        }    
+        stage('Deploy to kubernetes'){
+			steps{
+				ansiblePlaybook credentialsId: 'Ansible_ssh', disableHostKeyChecking: true, installation: 'Ansible', playbook: 'playbook.yaml'
+			}
+		}
     
     }
 }
