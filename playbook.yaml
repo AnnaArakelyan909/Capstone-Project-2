@@ -3,11 +3,9 @@
   tasks:
     - name: use cluster
       command: kubectl cluster-info --context kind-flask-app 
-      hosts: remote_host
       become: True
       become_user: project
     - name: run deployment.yaml
       command: kubectl apply -f deployment.yaml
-      hosts: remote_host
       become: True
       become_user: project
