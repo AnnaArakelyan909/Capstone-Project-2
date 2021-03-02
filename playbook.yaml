@@ -4,8 +4,8 @@
     - name: use cluster
       command: kubectl cluster-info --context kind-flask-app 
       become: true
-    
+      become_user: project
     - name: run deployment.yaml
       command: kubectl apply -f deployment.yaml
       become: true
-      
+      become_user: project
