@@ -1,6 +1,6 @@
 Please follow the live [document](https://docs.google.com/document/d/17OwlITE-yPWNj3Vi5RtQfz3ItvSkOfnbaVMnzlZyGTg)
 
-Ubuntu 20.04 VM
+1. Ubuntu 20.04 VM
 
 Install docker 
 
@@ -59,3 +59,43 @@ $ terraform apply
 $ kubectl get all –all-namespaces
 
 $ terraform destroy
+
+
+
+2. Ubuntu 20.04 VM
+
+Install Java
+ 
+sudo apt update && sudo apt upgrade 
+sudo apt-get install openjdk-8-jd
+java -version
+
+Install Jenkins
+ 
+wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add - 
+Add the following entry in your /etc/apt/sources.list:
+deb https://pkg.jenkins.io/debian-stable binary/ echo "deb https://pkg.jenkins.io/debian-stable binary/" | sudo tee -a /etc/apt/sources.list
+
+sudo apt-get update  
+sudo apt-get install jenkins
+sudo systemctl start Jenkins
+sudo systemctl enable Jenkins
+sudo systemctl status Jenkins
+
+You can access jenkins at
+http://YOUR-SERVER-PUBLIC-IP:8080
+Unlock Jenkins page will be shown.
+cat /var/lib/jenkins/secrets/initialAdminPassword
+
+
+In Jenkins make sure have all plugins installation (Ansible, Git, Docker) 
+install git
+sudo apt update  
+sudo apt install git
+
+Install Ansible
+
+sudo apt-add-repository ppa:ansible/ansible  
+sudo apt update  
+sudo apt install ansible 
+
