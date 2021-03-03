@@ -47,9 +47,15 @@ Create cluster
 
 
 $ kind create cluster --name app --config kind-config.yaml
+
 $ kind get cluster
+
 $ kubectl cluster-info --context kind-app
+
 $ terraform init
+
 $ terraform apply
+
 $ kubectl get all –all-namespaces
+
 $ terraform destroy
