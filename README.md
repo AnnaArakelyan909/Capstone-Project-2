@@ -62,6 +62,8 @@ $ terraform destroy
 
 
 
+
+
 2. Ubuntu 20.04 VM
 
 Install Java
